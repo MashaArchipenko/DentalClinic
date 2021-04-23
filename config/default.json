@@ -1,0 +1,5 @@
+{
+    "port":5000,
+    "jwtSecret":"masha dental",
+    "mongoUri": "mongodb+srv://masha:qwerasdzxc1809@cluster0.algbi.mongodb.net/app?retryWrites=true&w=majority"
+}

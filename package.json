@@ -1,0 +1,29 @@
+{
+  "name": "dentalclinic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MashaArchipenko/DentalClinic.git"
+  },
+  "author": "Masha Archipenko <mary.archipenko.99@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MashaArchipenko/DentalClinic/issues"
+  },
+  "homepage": "https://github.com/MashaArchipenko/DentalClinic#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.0.2",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "nodemon": "^2.0.7"
+  }
+}
