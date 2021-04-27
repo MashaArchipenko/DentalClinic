@@ -1,7 +1,7 @@
 const { Router, response } = require('express')
 const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator')
-const jwt=require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const config = require('config')
 const User = require('../models/User')
 const router = Router()
@@ -10,10 +10,11 @@ const router = Router()
 router.post(
     '/register',
     [
-        check('email', 'not correct email').isEmail(),
-        check('password', 'not correct password').isLength({ min: 6 })
+        check('email', 'Некорректный email').isEmail(),
+        check('password', 'Минимальная длина пароля 6 символов').isLength({ min: 6 })
     ],
     async (req, res) => {
+        //console.log("body ",req.body);
         try {
             const errors = validationResult(req)
 
@@ -24,7 +25,7 @@ router.post(
                 })
             }
 
-            const { email, password } = req.body
+            const { email, password, role } = req.body
 
             const candidate = await User.findOne({ email })
 
@@ -33,7 +34,7 @@ router.post(
             }
 
             const hashPassword = await bcrypt.hash(password, 12)
-            const user = new User({ email, password: hashPassword })
+            const user = new User({ email, password: hashPassword, role })
 
             await user.save()
             res.status(201).json({ message: 'User save' })
@@ -45,10 +46,10 @@ router.post(
     })
 
 router.post('/login',
-[
-    check('email', 'Enter correc Email').normalizeEmail().isEmail(),
-    check('password', 'enter password').exists()
-],
+    [
+        check('email', 'Enter correc Email').normalizeEmail().isEmail(),
+        check('password', 'enter password').exists()
+    ],
     async (req, res) => {
         try {
             const errors = validationResult(req)
@@ -60,26 +61,24 @@ router.post('/login',
                 })
             }
 
-            const {email,password} = req.body
-            const user = await User.findOne({email})
+            const { email, password,role } = req.body
+            const user = await User.findOne({ email })
 
-            if(!user)
-            {
-                return res.status(400).json({message:'user not exist'})
+            if (!user) {
+                return res.status(400).json({ message: 'user not exist' })
             }
 
-            const isMatch =await bcrypt.compare(password,user.password)
-            if(!isMatch)
-            {
-                return res.status(400).json({message:'not correct password'})
+            const isMatch = await bcrypt.compare(password, user.password)
+            if (!isMatch) {
+                return res.status(400).json({ message: 'not correct password' })
             }
 
-            const token=jwt.sign(
-                { userId:user.id},
+            const token = jwt.sign(
+                { userId: user.id,userRole:user.role },
                 config.get('jwtSecret'),
-                {expiresIn:'1h'}
+                { expiresIn: '1h' }
             )
-            res.json({token,userId:user.id})
+            res.json({ token, userId: user.id, userRole:user.role })
 
         } catch (e) {
             response.status(500).json({ message: 'smth wrong try again' })

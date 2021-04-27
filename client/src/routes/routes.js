@@ -1,8 +1,9 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-import {LinksPage} from './pages/LinksPage'
-import {AuthPage} from './pages/AuthPage'
+import { LinksPage } from '../pages/LinksPage'
+import { AuthPage } from '../pages/AuthPage'
+import { CreatePage } from '../pages/CreatePage'
 
-export const useRoutes = (isAuthenticated) => {
+export const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
         return (
             <Switch>
@@ -10,7 +11,7 @@ export const useRoutes = (isAuthenticated) => {
                     <LinksPage />
                 </Route>
                 <Route path="/create" exact>
-                    <LinksPage />
+                    <CreatePage />
                 </Route>
                 <Route path="/detail/:id" exact>
                     <LinksPage />
