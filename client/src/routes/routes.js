@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { AuthPage } from '../pages/AuthPage'
+import { AuthPage } from '../hooks/AuthPage'
 import { ClientRoutes } from './userRoutes'
 import AdminRoutes from './adminRoutes'
 import ManagerRoutes from './managerRoutes'
