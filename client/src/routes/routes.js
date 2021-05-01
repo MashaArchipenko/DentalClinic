@@ -5,6 +5,7 @@ import AdminRoutes from './adminRoutes'
 import ManagerRoutes from './managerRoutes'
 import DoctorRoutes from './doctorRoutes'
 import NurseRoutes from './nurseRoutes'
+import HomePage from '../pages/HomePage'
 
 export const useRoutes = (isAuthenticated, userRole) => {
     if (isAuthenticated) {
@@ -26,6 +27,9 @@ export const useRoutes = (isAuthenticated, userRole) => {
     return (
         <Switch>
             <Route path="/" exact>
+                <HomePage />
+            </Route>
+            <Route path="/auth" exact>
                 <AuthPage />
             </Route>
             <Redirect to="/" />
