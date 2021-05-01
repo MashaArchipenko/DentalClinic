@@ -8,14 +8,11 @@ import { useRoutes } from './routes/routes';
 function App() {
   const { token, login, logout, userId, userRole } = useAuth()
   const isAuthenticated = !!token
-  //console.log(isAuthenticated)
-  const routes = useRoutes(isAuthenticated)
+  const routes = useRoutes(isAuthenticated,userRole)
   return (
     <AuthContext.Provider value={{ token, login, logout, userId, userRole, isAuthenticated }}>
-      {console.log(userRole)}
       <Router>
-        {isAuthenticated && <Navbar />}
-
+        {isAuthenticated && <Navbar role={userRole} />}
         <div className="container">
           {routes}
         </div>

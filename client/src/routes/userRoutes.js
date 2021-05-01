@@ -1,7 +1,17 @@
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-export const clientRoutes = () => {
+import { CreatePage } from '../pages/CreatePage'
 
-    return(
-        <div>Client</div>
+export const ClientRoutes = () => {
+    return (
+        <Switch>
+            <Route path="/links" exact>
+            <CreatePage />
+            </Route>
+            <Route path="/create" exact>
+                <CreatePage />
+            </Route>
+            <Redirect to="/create" />
+        </Switch>
     )
 }

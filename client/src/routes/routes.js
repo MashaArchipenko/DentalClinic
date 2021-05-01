@@ -1,24 +1,27 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { LinksPage } from '../pages/LinksPage'
 import { AuthPage } from '../pages/AuthPage'
-import { CreatePage } from '../pages/CreatePage'
+import { ClientRoutes } from './userRoutes'
+import AdminRoutes from './adminRoutes'
+import ManagerRoutes from './managerRoutes'
+import DoctorRoutes from './doctorRoutes'
+import NurseRoutes from './nurseRoutes'
 
-export const useRoutes = isAuthenticated => {
+export const useRoutes = (isAuthenticated, userRole) => {
     if (isAuthenticated) {
-        return (
-            <Switch>
-                <Route path="/links" exact>
-                    <LinksPage />
-                </Route>
-                <Route path="/create" exact>
-                    <CreatePage />
-                </Route>
-                <Route path="/detail/:id" exact>
-                    <LinksPage />
-                </Route>
-                <Redirect to="/create" />
-            </Switch>
-        )
+        switch (userRole) {
+            case 'client':
+                return <ClientRoutes />
+            case 'admin':
+                return <AdminRoutes />
+            case 'manager':
+                return <ManagerRoutes />
+            case 'doctor':
+                return <DoctorRoutes />
+            case 'norse':
+                return <NurseRoutes />
+            default:
+                break;
+        }
     }
     return (
         <Switch>
