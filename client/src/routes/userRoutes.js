@@ -11,7 +11,7 @@ export const ClientRoutes = () => {
             <Route path="/create" exact>
                 <CreatePage />
             </Route>
-            <Redirect to="/create" />
+            <Redirect to="/" />
         </Switch>
     )
 }

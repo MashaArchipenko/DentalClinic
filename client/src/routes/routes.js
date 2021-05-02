@@ -6,9 +6,15 @@ import ManagerRoutes from './managerRoutes'
 import DoctorRoutes from './doctorRoutes'
 import NurseRoutes from './nurseRoutes'
 import HomePage from '../pages/HomePage'
+import AboutPage from '../pages/AboutPage'
+import Services from '../pages/Services'
+import Doctors from '../pages/Doctors'
+import News from '../pages/News'
+import Reviews from '../pages/Reviews'
 
 export const useRoutes = (isAuthenticated, userRole) => {
-    if (isAuthenticated) {
+
+    const routByRole = () => {
         switch (userRole) {
             case 'client':
                 return <ClientRoutes />
@@ -24,6 +30,42 @@ export const useRoutes = (isAuthenticated, userRole) => {
                 break;
         }
     }
+
+    const allRoutes = () => {
+        return (
+            <Switch>
+                <Route path="/" exact>
+                <HomePage />
+                </Route>
+                <Route path="/about" exact>
+                    <AboutPage />
+                </Route>
+                <Route path="/services" exact>
+                    <Services />
+                </Route>
+                <Route path="/doctors" exact>
+                    <Doctors />
+                </Route>
+                <Route path="/news" exact>
+                    <News />
+                </Route>
+                <Route path="/review" exact>
+                    <Reviews />
+                </Route>
+                <Redirect to="/" />
+            </Switch>
+        )
+    }
+
+    if (isAuthenticated) {
+        return (
+            <>
+                {allRoutes()}
+                {routByRole()}
+            </>
+        )
+    }
+
     return (
         <Switch>
             <Route path="/" exact>

@@ -2,10 +2,9 @@ import { useContext } from 'react'
 import React from 'react'
 import { NavLink, useHistory } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
-import { Nav, NavDropdown, Navbar, Form } from 'react-bootstrap'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import { Nav, NavDropdown, Navbar} from 'react-bootstrap'
 import image from './logo.jpg'
-
+import s from './styles/Navbar.module.css'
 
 export const Navbarr = props => {
     const { isAuth, role } = props;
@@ -21,7 +20,8 @@ export const Navbarr = props => {
     const showButtonAuthUser = () => {
         if (isAuth) {
             switch (role) {
-                case 'client': return (
+                case 'client': 
+                return (
                     <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -38,7 +38,6 @@ export const Navbarr = props => {
                             <li><NavLink to="/create">Создать</NavLink></li>
                             <li><NavLink to="/create">Создать</NavLink></li>
                         </div>
-
                     );
                 case 'manager':
                     return (
@@ -48,7 +47,6 @@ export const Navbarr = props => {
                             <li><NavLink to="/create">Создать</NavLink></li>
                             <li><NavLink to="/create">Создать</NavLink></li>
                         </div>
-
                     );
                 case 'doctor':
                     return (
@@ -57,7 +55,6 @@ export const Navbarr = props => {
                             <li><NavLink to="/create">Пациенты</NavLink></li>
                             <li><NavLink to="/create">Прием</NavLink></li>
                         </div>
-
                     );
                 case 'nurse':
                     return (
@@ -67,9 +64,7 @@ export const Navbarr = props => {
                             <li><NavLink to="/create">Создать</NavLink></li>
                             <li><NavLink to="/create">Создать</NavLink></li>
                         </div>
-
                     );
-
                 default:
                     break;
             }
@@ -78,8 +73,8 @@ export const Navbarr = props => {
 
     return (
         <>
-            <Navbar fixed="top" expand="lg" className="blue darken-4 p-3" >
-                <Navbar.Brand href="/">
+            <Navbar fixed="top" expand="lg" className={s.navbar}>
+                <Navbar.Brand href="/" className="text-white">
                     <img
                         alt="logo"
                         src={image}
@@ -89,19 +84,16 @@ export const Navbarr = props => {
                     />{' '} Dental Clinic
                 </Navbar.Brand>
                 <Navbar.Collapse >
-                    <Nav className="blue darken-4 right">
-                        <ul>
-                                <li><NavLink to="/">О нас</NavLink></li>
-                                <li><NavLink to="/">Услуги</NavLink></li>
-                                <li><NavLink to="/">Наши врачи</NavLink></li>
-                                <li><NavLink to="/">Новости</NavLink></li>
-                                <li><NavLink to="/">Отзывы</NavLink></li>
-                            </ul>
+                    <Nav className="ml-auto">
+                        <Nav.Link href="/about">О нас</Nav.Link>
+                        <Nav.Link href="/services">Услуги</Nav.Link>
+                        <Nav.Link href="/doctors">Наши врачи</Nav.Link>
+                        <Nav.Link href="/news">Новости</Nav.Link>
+                        <Nav.Link href="/review">Отзывы</Nav.Link>
                     </Nav>
                     {showButtonAuthUser()}
-                        {isAuth && <Nav.Link href="/" className="btn" onClick={logoutHandler}>logout</Nav.Link>}
-                        {!isAuth && <Nav.Link className="btn" href="/auth">Вход/Регистрация</Nav.Link>}
-                    
+                    {isAuth && <Nav.Link href="/" className="btn justify-content-end ml-auto" onClick={logoutHandler}>logout</Nav.Link>}
+                    {!isAuth && <Nav.Link className="btn" href="/auth">Вход/Регистрация</Nav.Link>}
                 </Navbar.Collapse>
             </Navbar>
         </>

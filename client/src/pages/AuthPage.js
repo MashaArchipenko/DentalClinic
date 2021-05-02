@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook'
-import { useMessage } from '../hooks/message.hook';
+import { Toast } from 'react-bootstrap'
 
 export const AuthPage = () => {
     const auth = useContext(AuthContext)
-    const message = useMessage();
+    //const message = useMessage();
+    const [message, setMessage] = useState(null);
     const { loading, error, request, clearError } = useHttp();
     const [form, setForm] = useState({ email: '', password: '', role: 'client' })
 
@@ -16,12 +17,11 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', { ...form })
-            message(data.message)
+            setMessage(data.message)
         } catch (e) {
 
         }
     }
-
     const loginHandler = async () => {
         try {
             const data = await request('/api/auth/login', 'POST', { ...form })
@@ -32,14 +32,24 @@ export const AuthPage = () => {
     }
 
     useEffect(() => {
-        message(error)
+        setMessage(error)
         clearError()
     }, [error, message, clearError])
 
-
     useEffect(() => {
-        window.M.updateTextFields()
-    }, [])
+        errorMessage();
+    }, [message])
+
+    const errorMessage = () => {
+        return (
+            <Toast>
+                <Toast.Header>
+                    <strong className="mr-auto">Error</strong>
+                </Toast.Header>
+                <Toast.Body>{message}</Toast.Body>
+            </Toast>
+        )
+    }
 
     return (
         <div className="row">
@@ -81,6 +91,7 @@ export const AuthPage = () => {
                             </button>
                 </div>
             </div>
+            {message && errorMessage()}
         </div>
     )
 }

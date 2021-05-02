@@ -1,9 +1,10 @@
-import React from 'react'
+import {CarouselBlock} from '../components/CarouselBlock'
+import pic from '../components/pexels-photo-287227.jpeg'
 
 export default function HomePage() {
     return (
-        <div>
-            
-        </div>
+       <>
+            <CarouselBlock/>
+            </>
     )
 }

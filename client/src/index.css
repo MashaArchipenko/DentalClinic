@@ -1,4 +1,4 @@
-@import "~materialize-css/dist/css/materialize.min.css";
+
 
 input.blue-input
 {
@@ -18,4 +18,9 @@ input.blue-input:focus
 
 body{
     font-size: large;
+}
+
+.nav-link
+{
+    color: white !important;
 }

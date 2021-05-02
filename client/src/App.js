@@ -1,4 +1,4 @@
-import 'materialize-css'
+
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Navbarr } from './components/Navbar';
 import { AuthContext } from './context/AuthContext';
@@ -11,12 +11,9 @@ function App() {
   const routes = useRoutes(isAuthenticated,userRole)
   return (
     <AuthContext.Provider value={{ token, login, logout, userId, userRole, isAuthenticated }}>
-      
       <Router>
         <Navbarr role={userRole} isAuth={isAuthenticated}/>
-        <div className="container">
           {routes}
-        </div>
       </Router>
     </AuthContext.Provider>
   );
