@@ -2,9 +2,10 @@ import { useContext } from 'react'
 import React from 'react'
 import { NavLink, useHistory } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
-import { Nav, NavDropdown, Navbar} from 'react-bootstrap'
+import { Nav, NavDropdown, Navbar, Button} from 'react-bootstrap'
 import image from './logo.jpg'
 import s from './styles/Navbar.module.css'
+import {Phone} from 'react-bootstrap-icons'
 
 export const Navbarr = props => {
     const { isAuth, role } = props;
@@ -73,7 +74,7 @@ export const Navbarr = props => {
 
     return (
         <>
-            <Navbar fixed="top" expand="lg" className={s.navbar}>
+            <Navbar  expand="lg" className={s.navbar}>
                 <Navbar.Brand href="/" className="text-white">
                     <img
                         alt="logo"
@@ -84,6 +85,8 @@ export const Navbarr = props => {
                     />{' '} Dental Clinic
                 </Navbar.Brand>
                 <Navbar.Collapse >
+                <div className="ml-5">ПН - ПТ: 9:00 - 21:00<br></br>СБ - выходной </div>
+                <div className="ml-5"><Phone/> +375 33 674-02-51</div>
                     <Nav className="ml-auto">
                         <Nav.Link href="/about">О нас</Nav.Link>
                         <Nav.Link href="/services">Услуги</Nav.Link>
@@ -91,9 +94,11 @@ export const Navbarr = props => {
                         <Nav.Link href="/news">Новости</Nav.Link>
                         <Nav.Link href="/review">Отзывы</Nav.Link>
                     </Nav>
+                    
                     {showButtonAuthUser()}
-                    {isAuth && <Nav.Link href="/" className="btn justify-content-end ml-auto" onClick={logoutHandler}>logout</Nav.Link>}
-                    {!isAuth && <Nav.Link className="btn" href="/auth">Вход/Регистрация</Nav.Link>}
+                    {isAuth && <Nav.Link href="/" className="btn justify-content-end ml-auto" onClick={logoutHandler}>
+                      <Button>Logout</Button>  </Nav.Link>}
+                    {!isAuth && <Nav.Link className="btn" href="/auth"><Button variant="outline-light">Вход/Регистрация</Button></Nav.Link>}
                 </Navbar.Collapse>
             </Navbar>
         </>

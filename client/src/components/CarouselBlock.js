@@ -2,6 +2,8 @@ import { Carousel } from 'react-bootstrap'
 import pic from './pexels-photo-287227.jpeg'
 
 export const CarouselBlock = () => {
+
+  const carouselHeight='530px'
   return (
     <Carousel>
     <Carousel.Item>
@@ -9,6 +11,7 @@ export const CarouselBlock = () => {
         className="d-block w-100"
         src={pic}
         alt="First slide"
+        style={{height:carouselHeight}}
       />
       <Carousel.Caption>
         <h3>First slide label</h3>
@@ -20,6 +23,7 @@ export const CarouselBlock = () => {
         className="d-block w-100"
         src={pic}
         alt="Second slide"
+        style={{height:carouselHeight}}
       />
   
       <Carousel.Caption>
@@ -32,6 +36,7 @@ export const CarouselBlock = () => {
         className="d-block w-100"
         src={pic}
         alt="Third slide"
+        style={{height:carouselHeight}}
       />
   
       <Carousel.Caption>

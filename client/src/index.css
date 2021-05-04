@@ -18,6 +18,9 @@ input.blue-input:focus
 
 body{
     font-size: large;
+    letter-spacing: 2x;
+    background: url('pexels-karolina-grabowska-4202464.jpg') no-repeat;
+    background-size: cover;
 }
 
 .nav-link
