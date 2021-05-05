@@ -24,6 +24,7 @@ export const AuthPage = () => {
             console.log('ok')
             const data = await request('/api/auth/register', 'POST', { email, password, role })
             setMessage(data.message)
+            setAuthPage(false);
         } catch (e) {
         }
     }
@@ -32,6 +33,7 @@ export const AuthPage = () => {
             console.log('ok')
             const data = await request('/api/auth/login', 'POST', { email, password, role })
             auth.login(data.token, data.userId, data.userRole)
+            setAuthPage(true);
         } catch (e) {
 
         }

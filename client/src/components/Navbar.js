@@ -3,7 +3,7 @@ import React from 'react'
 import { NavLink, useHistory } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { Nav, NavDropdown, Navbar, Button} from 'react-bootstrap'
-import image from './logo.jpg'
+import image from './img/logo.jpg'
 import s from './styles/Navbar.module.css'
 import {Phone} from 'react-bootstrap-icons'
 
