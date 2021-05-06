@@ -27,3 +27,15 @@ body{
 {
     color: white !important;
 }
+.card
+{
+    background-color: #0E47A1;
+    opacity: 0.8;
+}
+
+footer{
+    background-color:  #0E47A1;
+    color: white;
+    text-align: center;
+    padding: 3%;
+}

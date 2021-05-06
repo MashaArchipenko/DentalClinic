@@ -31,43 +31,29 @@ export const useRoutes = (isAuthenticated, userRole) => {
         }
     }
 
-    const allRoutes = () => {
-        return (
-            <Switch>
-                <Route path="/" exact>
-                <HomePage />
-                </Route>
-                <Route path="/about" exact>
-                    <AboutPage />
-                </Route>
-                <Route path="/services" exact>
-                    <Services />
-                </Route>
-                <Route path="/doctors" exact>
-                    <Doctors />
-                </Route>
-                <Route path="/news" exact>
-                    <News />
-                </Route>
-                <Route path="/review" exact>
-                    <Reviews />
-                </Route>
-                <Redirect to="/" />
-            </Switch>
-        )
-    }
-
     if (isAuthenticated) {
         return (
             <>
-                {allRoutes()}
+            <Switch>
+                <Route path="/" component={HomePage} exact />
+                <Route path="/about" component={AboutPage} exact />
+                <Route path="/services" component={Services} exact />
+                <Route path="/doctors" component={Doctors} exact />
+                <Route path="/news" component={News} exact />
+                <Route path="/review" component={Reviews} exact />
+            </Switch>
                 {routByRole()}
             </>
         )
     }
-
-    return (
+else return (
         <Switch>
+            <Route path="/" component={HomePage} exact />
+                <Route path="/about" component={AboutPage} exact />
+                <Route path="/services" component={Services} exact />
+                <Route path="/doctors" component={Doctors} exact />
+                <Route path="/news" component={News} exact />
+                <Route path="/review" component={Reviews} exact />
             <Route path="/" exact>
                 <HomePage />
             </Route>

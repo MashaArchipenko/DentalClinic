@@ -9,13 +9,13 @@ function App() {
   const { token, login, logout, userId, userRole } = useAuth()
   const isAuthenticated = !!token
   const routes = useRoutes(isAuthenticated,userRole)
-  return (
+  return (<Router>
     <AuthContext.Provider value={{ token, login, logout, userId, userRole, isAuthenticated }}>
-      <Router>
+      
         <Navbarr role={userRole} isAuth={isAuthenticated}/>
           {routes}
-      </Router>
-    </AuthContext.Provider>
+      
+    </AuthContext.Provider></Router>
   );
 }
 
