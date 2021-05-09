@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function News() {
+export const  News=()=> {
     return (
         <div>
             

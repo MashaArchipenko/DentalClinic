@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AboutPage() {
+export const AboutPage = ()=> {
     return (
         <div>
             

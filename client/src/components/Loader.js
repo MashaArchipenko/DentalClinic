@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Doctors=()=> {
+export const Loader=()=> {
     return (
         <div>
-            
+            Reloader component
         </div>
     )
 }
