@@ -46,7 +46,6 @@ router.get(':/id',auth, async (req, res) => {
     } catch (e) {
         response.status(500).json({ message: 'smth wrong try again' })
     }
-
 })
 
 module.exports = router

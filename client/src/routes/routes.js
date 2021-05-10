@@ -11,10 +11,13 @@ import {Services} from '../pages/Services'
 import {Doctors} from '../pages/Doctors'
 import {News} from '../pages/News'
 import {Reviews} from '../pages/Reviews'
+import {Appointment} from '../functional components/Appointment'
+import {AddReview} from '../functional components/AddReview'
+import {CheckMessage} from "../functional components/CheckMessage"
 
 export const useRoutes = (isAuthenticated, userRole) => {
 
-   /* const routByRole = () => {
+    const routByRole = () => {
         switch (userRole) {
             case 'client':
                 return <ClientRoutes />
@@ -29,9 +32,9 @@ export const useRoutes = (isAuthenticated, userRole) => {
             default:
                 break;
         }
-    }*/
+    }
 
-    return (
+    return (<>
         <Switch>
             <Route path="/" component={HomePage} exact />
             <Route path="/about" component={AboutPage} exact />
@@ -40,8 +43,13 @@ export const useRoutes = (isAuthenticated, userRole) => {
             <Route path="/news" component={News} exact />
             <Route path="/review" component={Reviews} exact />
             <Route path="/auth" component={AuthPage} exact />
+            <Route path="/appointment" component={Appointment} exact />
+            <Route path="/addReview" component={AddReview} exact/>
+            <Route path="/checkMessage" component={CheckMessage} exact/>
             <Redirect to="/"/>
-        </Switch>
+        </Switch> 
+        
+        </>
     )
 
 }

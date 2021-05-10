@@ -34,11 +34,11 @@ router.get('/', async (req, res) => {
 
 router.get(':/id', auth, async (req, res) => {
     try {
-        const reviews = await Review.find({ userId: req.user.userId });
+        console(req.params);
+        const reviews = await Review.find({ userId: req.params.id });
     } catch (e) {
         response.status(500).json({ message: 'smth wrong try again' })
     }
-
 })
 
 module.exports = router
