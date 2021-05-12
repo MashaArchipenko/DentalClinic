@@ -1,21 +1,20 @@
 import React, { useContext, useState, useCallback, useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import { useParams } from 'react-router-dom'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
-import { ShowReviews } from '../pages/Reviews'
+import ShowReviews from '../components/ShowReviews'
 
 export function AddReview() {
 
-    const { userId,token } = useContext(AuthContext)
+    const { token } = useContext(AuthContext)
     const { request, loading } = useHttp()
     const [review, setReview] = useState([])
-   // const reviewId = useParams().id
-    const [ reviewText, setReviewText ] = useState("");
+    // const reviewId = useParams().id
+    const [reviewText, setReviewText] = useState("");
 
     const getReview = useCallback(async () => {
         try {
-            const fetched = await request(`/api/review/${userId}`, 'GET', null,
+            const fetched = await request(`/api/review/getById`, 'GET', null,
                 {
                     Authorization: `Bearer ${token}`
                 })
@@ -23,7 +22,7 @@ export function AddReview() {
         } catch (error) {
 
         }
-    }, [token, userId, request])
+    }, [token, request])
 
     useEffect(() => {
         getReview()
@@ -39,7 +38,6 @@ export function AddReview() {
             const data = await request('/api/review/createReview', 'POST', { reviewText: reviewText }, {
                 Authorization: `Bearer ${token}`
             })
-            console.log(data);
             setReviewText('');
         } catch (error) {
         }
@@ -47,8 +45,8 @@ export function AddReview() {
 
     return (
         <div>
-            {!loading && <ShowReviews revs={review} />}
-            {console.log(typeof setReviewText)}
+            {!loading && review.length && <ShowReviews revs={review} />}
+            {!loading && !review.length && <p>Have no reviews</p>}
             <form onSubmit={handleSave}>
                 <label>Example textarea
                     <textarea rows={3} value={reviewText} onChange={e => setReviewText(e.target.value)} /></label>

@@ -1,13 +1,10 @@
 const { Router } = require('express')
 const router = Router()
-const shortid = require('shortid')
 const Review = require('../models/Review.js')
 const auth = require('../middleware/auth.middleware')
-const config = require('config')
 
 router.post('/createReview', auth, async (req, res) => {
     try {
-        console.log("req.body: ",req.body)
         const { reviewText } = req.body
         const review = new Review(
             {
@@ -32,10 +29,10 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get(':/id', auth, async (req, res) => {
+router.get('/getById', auth, async (req, res) => {
     try {
-        console(req.params);
-        const reviews = await Review.find({ userId: req.params.id });
+        const reviews = await Review.find({ userId: req.user.userId });
+        res.json(reviews);
     } catch (e) {
         response.status(500).json({ message: 'smth wrong try again' })
     }

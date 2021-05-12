@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
+import ShowReviews from '../components/ShowReviews';
 
 export const Reviews = () => {
     const { loading, request } = useHttp();
@@ -8,13 +9,12 @@ export const Reviews = () => {
 
     const getReview = useCallback(async () => {
         try {
-            const data = await request('/api/review', 'GET', null,null)
-            console.dir("data ", data);
-            setRevs(data);
+            const data = await request('/api/review', 'GET')
+            setRevs(data)
         } catch (error) {
         }
     }, [request])
-    
+
     useEffect(() => {
         getReview();
     }, [getReview])
@@ -25,21 +25,8 @@ export const Reviews = () => {
 
     return (
         <div>
-            <div>Hello world</div>
-            {!loading && <ShowReviews revs={revs} />}
+            {!loading && revs.length && <ShowReviews revs={revs}/>}
+            {!revs.length && <p>Have no reviews</p>}
         </div>
     )
-}
-
-export const ShowReviews = ({revs}) => {
-    console.log(revs);
-    if (!revs.length) {
-        return <p>Have no reviews</p>
-    }
-    console.log("revs ", revs);
-    revs.map((link, name) => {
-        return (<div><h3>{link.date}</h3>
-            <p>{link.reviewText}</p>
-        </div>)
-    })
 }
