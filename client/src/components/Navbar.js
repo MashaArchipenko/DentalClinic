@@ -27,6 +27,7 @@ export const Navbarr = props => {
                         <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
                         <NavDropdown.Item href="/addReview">Добавить отзыв</NavDropdown.Item>
                         <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
+                        <NavDropdown.Item href="/registerDoctor">reg doc</NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
                 )

@@ -9,7 +9,6 @@ export function AddReview() {
     const { token } = useContext(AuthContext)
     const { request, loading } = useHttp()
     const [review, setReview] = useState([])
-    // const reviewId = useParams().id
     const [reviewText, setReviewText] = useState("");
 
     const getReview = useCallback(async () => {

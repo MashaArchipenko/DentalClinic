@@ -7,21 +7,14 @@ import s from './authPage.module.css'
 export const AuthPage = () => {
     const auth = useContext(AuthContext)
     const [authPage, setAuthPage] = useState(true);
-    //const message = useMessage();
     const [message, setMessage] = useState(null);
     const { loading, error, request, clearError } = useHttp();
-    //const [form, setForm] = useState({ email: '', password: '', role: 'client' })
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
-
-    /*const changeHandler = (event) => {
-        setForm({ ...form, [event.target.name]: event.target.value })
-    }*/
     const role = 'client';
     const registerHandler = async () => {
         try {
-            console.log('ok')
             const data = await request('/api/auth/register', 'POST', { email, password, role })
             setMessage(data.message)
             setAuthPage(false);
@@ -30,7 +23,6 @@ export const AuthPage = () => {
     }
     const loginHandler = async () => {
         try {
-            console.log('ok')
             const data = await request('/api/auth/login', 'POST', { email, password, role })
             auth.login(data.token, data.userId, data.userRole)
             setAuthPage(true);
