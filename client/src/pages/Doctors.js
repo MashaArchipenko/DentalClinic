@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
-import ShowStuff from '../components/ShowStuff'
+import ShowDoctor from './ShowDoctor'
 
 export const Doctors = () => {
     const { loading, request } = useHttp();
@@ -9,7 +9,7 @@ export const Doctors = () => {
 
     const getStaff = useCallback(async () => {
         try {
-            const data = await request('/api/staff', 'GET',null,{staffN:"Doctor"})
+            const data = await request('/api/staff', 'GET', null, { staffN: "Doctor" })
             console.log("data")
             setStaff(data)
         } catch (error) {
@@ -26,7 +26,7 @@ export const Doctors = () => {
 
     return (
         <div>
-            {!loading && staff.length && <ShowStuff revs={staff}/>}
+            {!loading && staff.length && <ShowDoctor revs={staff} />}
             {!staff.length && <p>Have no Doctors</p>}
         </div>
     )

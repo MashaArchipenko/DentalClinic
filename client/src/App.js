@@ -8,7 +8,7 @@ import { useRoutes } from './routes/routes';
 function App() {
   const { token, login, logout, userId, userRole,ready } = useAuth()
   const isAuthenticated = !!token
-  const routes = useRoutes(isAuthenticated)
+  const routes = useRoutes(isAuthenticated,userRole)
   if(!ready)
   {
     return <Loader />
