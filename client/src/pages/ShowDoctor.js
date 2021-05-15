@@ -9,31 +9,31 @@ import fourth from './personalImg/women.jpg'
 export default function ShowDoctor({ revs }) {
 
     const listItems = revs.map(item => {
-        let img=fourth;
+        let img = fourth;
         switch (item.name) {
             case "Pasha Ivanov":
-                img=first;
+                img = first;
                 break;
             case "Oleg":
-                img=second;
+                img = second;
                 break;
-                case "Alex Svift":
-                    img=third;
-                    break;
+            case "Alex Svift":
+                img = third;
+                break;
             default:
                 break;
         }
         return (
             <Col>
                 <Card className={s.card}>
-                <Card.Img variant="top" src={img} />
+                    <Card.Img variant="top" src={img} />
                     <Card.Body>
-                    <Card.Title>
-                        {item.name}
-                    </Card.Title>
-                    <Card.Text>
-                        {item.info}
-                    </Card.Text>
+                        <Card.Title>
+                            {item.name}
+                        </Card.Title>
+                        <Card.Text>
+                            {item.info}
+                        </Card.Text>
                     </Card.Body>
                     <Card.Footer> Byrthday: {new Date(item.birthday).toLocaleDateString()}
                     </Card.Footer>
