@@ -1,0 +1,9 @@
+.review
+{
+    color: white;
+    border: 1px solid #0b4096;
+    box-shadow: 0 0 15px #0b4096;
+    width: auto;
+    margin: 2%;
+    padding: 1%;
+}

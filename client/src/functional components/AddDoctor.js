@@ -84,10 +84,10 @@ export const AddDoctor = () => {
                         name="name" placeholder="Enter name" onChange={(event) => setName(event.target.value)} />
                 </Form.Group>
 
-                <Form.Group>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Info</Form.Label>
                     <Form.Control
-                        type="text"
+                        as="textarea"
                         name="info" placeholder="Enter name" onChange={(event) => setInfo(event.target.value)} />
                 </Form.Group>
 
