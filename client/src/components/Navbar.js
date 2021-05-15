@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import React from 'react'
-import {  useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { Nav, NavDropdown, Navbar, Button } from 'react-bootstrap'
 import image from './img/logo.jpg'
@@ -27,32 +27,27 @@ export const Navbarr = props => {
                             <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
                             <NavDropdown.Item href="/addReview">Добавить отзыв</NavDropdown.Item>
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
+                            <NavDropdown.Item href="/openCard">Просмотр карты</NavDropdown.Item>
+                            <NavDropdown.Item href="/info">Заполнить данные</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     )
-                case 'admin':
-                    return (
-                        <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
-                            <NavDropdown.Item href="/addReview">Добавить отзыв</NavDropdown.Item>
-                            <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                        </NavDropdown>
-                    );
                 case 'manager':
                     return (
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
                             <NavDropdown.Item href="/registerDoctor">Добавить персонал</NavDropdown.Item>
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
+                            <NavDropdown.Item href="/openOrder">Просмотр сметы</NavDropdown.Item>
+                            <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
+                            <NavDropdown.Item href="/createOrder">Просмотр материалов</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );
                 case 'doctor':
                     return (
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
-                            <NavDropdown.Item href="/registerDoctor">Добавить персонал</NavDropdown.Item>
+                            <NavDropdown.Item href="/showcards">Просмотр карты</NavDropdown.Item>
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
@@ -61,7 +56,9 @@ export const Navbarr = props => {
                     return (
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
-                            <NavDropdown.Item href="/registerDoctor">Добавить персонал</NavDropdown.Item>
+                            <NavDropdown.Item href="/showcards">Просмотр карты</NavDropdown.Item>
+                            <NavDropdown.Item href="/changeCard">Заполнить карту</NavDropdown.Item>
+                            <NavDropdown.Item href="/create">Заполнить смету</NavDropdown.Item>
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
