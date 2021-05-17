@@ -15,17 +15,19 @@ export const AuthPage = () => {
     const role = 'client';
     const registerHandler = async () => {
         try {
+            setAuthPage(false);
             const data = await request('/api/auth/register', 'POST', { email, password, role })
             setMessage(data.message)
-            setAuthPage(false);
+            
         } catch (e) {
         }
     }
     const loginHandler = async () => {
         try {
+            setAuthPage(true);
             const data = await request('/api/auth/login', 'POST', { email, password, role })
             auth.login(data.token, data.userId, data.userRole)
-            setAuthPage(true);
+            
         } catch (e) {
 
         }
@@ -71,12 +73,12 @@ export const AuthPage = () => {
                     type="password"
                     name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
             </Form.Group>
-            {authPage && <Button variant="warning" type="submit" disabled={loading} onClick={loginHandler}>
+            <Button variant="warning" type="submit" disabled={loading} onClick={loginHandler}>
                 Вход
-  </Button>}
-            {!authPage && <Button variant="primary" type="submit" disabled={loading} onClick={registerHandler}>
+  </Button>
+            <Button variant="primary" type="submit" disabled={loading} onClick={registerHandler}>
                 Регистрация
-  </Button>}
+  </Button>
             {message && errorMessage()}
         </Form>
     )

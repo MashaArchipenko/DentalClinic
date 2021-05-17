@@ -34,12 +34,10 @@ router.post(
 
             const hashPassword = await bcrypt.hash(password, 12)
             const user = new User({ email, password: hashPassword, role })
-
             await user.save()
             res.status(201).json({ message: 'User save' })
-
         } catch (e) {
-            response.status(500).json({ message: 'smth wrong try again' })
+            res.status(500).json({ message: 'smth wrong try again' })
         }
 
     })
