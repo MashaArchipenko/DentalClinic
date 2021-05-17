@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         res.json(reviews);
         console.log("reviews: ",reviews)
     } catch (e) {
-        response.status(500).json({ message: 'smth wrong try again' })
+        res.status(500).json({ message: 'smth wrong try again' })
     }
 })
 
@@ -34,7 +34,7 @@ router.get('/getById', auth, async (req, res) => {
         const reviews = await Review.find({ userId: req.user.userId });
         res.json(reviews);
     } catch (e) {
-        response.status(500).json({ message: 'smth wrong try again' })
+        res.status(500).json({ message: 'smth wrong try again' })
     }
 })
 
