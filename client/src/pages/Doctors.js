@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
 import ShowDoctor from './ShowDoctor'
-
 export const Doctors = () => {
     const { loading, request } = useHttp();
     const [staff, setStaff] = useState([]);

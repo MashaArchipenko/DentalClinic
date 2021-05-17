@@ -1,3 +1,4 @@
+import {useContext} from 'react'
 import { Container, Col, Card, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import s from './style/showDoctor.module.css'
@@ -5,8 +6,12 @@ import first from './personalImg/doctor.jpg'
 import second from './personalImg/Male.jpg'
 import third from './personalImg/man.jpg'
 import fourth from './personalImg/women.jpg'
+import { AuthContext } from '../context/AuthContext'
+
 
 export default function ShowDoctor({ revs }) {
+    
+    const { isAuthenticated } = useContext(AuthContext)
 
     const listItems = revs.map(item => {
         let img = fourth;
@@ -37,7 +42,7 @@ export default function ShowDoctor({ revs }) {
                     </Card.Body>
                     <Card.Footer> Byrthday: {new Date(item.birthday).toLocaleDateString()}
                     </Card.Footer>
-                    <Link to= {`/appointment/${item._id}`} className="btn btn-primary stretched-link">Зписаться на прием</Link>
+                    {isAuthenticated && <Link to= {`/appointment/${item._id}`} className="btn btn-primary stretched-link">Зписаться на прием</Link>}
                 </Card>
             </Col>
         )

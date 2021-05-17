@@ -30,6 +30,7 @@ export const Navbarr = props => {
                             <NavDropdown.Item href="/openCard">Просмотр карты</NavDropdown.Item>
                             <NavDropdown.Item href="/writeMessage">Написать менеджеру</NavDropdown.Item>
                             <NavDropdown.Item href="/info">Заполнить данные</NavDropdown.Item>
+                            <NavDropdown.Item href="/getAppointment">Записи на прием</NavDropdown.Item>
                             <NavDropdown.Item href={`watchInfo/${id}`}>Просмотр данных</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>

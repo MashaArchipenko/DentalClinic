@@ -11,6 +11,7 @@ import { CheckMessage } from "../functional components/CheckMessage"
 import { AddDoctor } from '../functional components/AddDoctor'
 import AddInfo from "../functional components/AddInfo"
 import WatchInfo from "../pages/WatchInfo"
+import { GetAppointment } from "../functional components/GetAppointmen"
 
 export const ClientRoutes = () => {
     return (
@@ -28,7 +29,7 @@ export const ClientRoutes = () => {
             <Route path="/checkMessage" component={CheckMessage} exact />
             <Route path="/info" component={AddInfo} exact /> 
             <Route path="/watchInfo/:id" component={WatchInfo} exact />
-            
+            <Route path="/getAppointment" component={GetAppointment} exact/>
             <Redirect to="/" />
         </Switch>
     )

@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap'
+import { useParams } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook'
 
@@ -9,28 +10,28 @@ export const CreateSheduleTable = ({ shedule }) => {
     const startTime = new Date().setHours(9);
     const endTime = new Date().setHours(18);
     const { token,userId } = useContext(AuthContext)
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState("")
     const { request, loading } = useHttp()
-    const [time, setTime] = useState("");
+    const [time, setTime] = useState("09:00");
+    const {id} = useParams();
+    const [message,setMessage] = useState('');
 
     const handleSave = async (event) => {
         event.preventDefault();
         try {
-            const data = await request('/api/client/addInfo', 'POST', { date,time },
+            console.log(time);
+            const data = await request(`/api/shedule/appointment/${id}`, 'POST', { date,time },
                 {
                     Authorization: `Bearer ${token}`
                 })
-
+                setMessage(data.message);
         } catch (error) {
             
         }
 
     }
-
-    
-
-
-    if (!shedule) {
+    console.log("shedule ",shedule)
+    if (!shedule || !shedule.length) {
         return (
             <Form>
                 <Form.Group>
@@ -47,12 +48,18 @@ export const CreateSheduleTable = ({ shedule }) => {
                         type="time"
                         min="09:00"
                         max="17:30"
+                        value={time}
                         onChange={event => setTime(event.target.value)}
                         step="00:30" />
                 </Form.Group>
                 <Button onClick={handleSave}>Записаться</Button>
             </Form>
         )
+    }
+
+    if(message)
+    {
+        return(<div>{message}</div>)
     }
 
     else {

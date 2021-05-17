@@ -19,8 +19,11 @@ router.post('/addInfo', auth, async (req, res) => {
             )
             await info.save()
         }
-        const card = new Card({ userId: req.user.userId, date: null, doctorName: null, complaints: null, treatment: null })
-        await card.save()
+        const searchCard = await Card.find({ userId: req.user.userId })
+        if (!searchCard) {
+            const card = new Card({ userId: req.user.userId, date: null, doctorName: null, complaints: null, treatment: null })
+            await card.save()
+        }
         res.status(201).json({ message: 'Ok' })
     } catch (e) {
         res.status(500).json({ message: 'smth wrong try again' })
