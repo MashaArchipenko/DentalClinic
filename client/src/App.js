@@ -18,7 +18,7 @@ function App() {
   
     <AuthContext.Provider value={{ token, login, logout, userId, userRole, isAuthenticated }}>
         <Router>
-          <Navbarr role={userRole} isAuth={isAuthenticated}/>
+          <Navbarr role={userRole} isAuth={isAuthenticated} id={userId}/>
         <div>
           {routes}
           </div>

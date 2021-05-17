@@ -11,6 +11,7 @@ export default function ShowStuff({ revs }) {
                 <td>{item.birthday}</td>
                 <td>{item.adress}</td>
                 <td>{item.staffName}</td>
+                <td>{item.phone}</td>
             </tr>
         )
     })

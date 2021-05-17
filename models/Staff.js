@@ -6,7 +6,13 @@ const schema = new Schema({
     info: { type: String, required: true },
     birthday: { type: Date, required: true },
     adress: { type: String, required: true },
-    staffName: { type: String, required: true }
+    phone:{type:String,required:true},
+    staffName: { type: String, required: true },
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
 })
 
 module.exports = model('Staff', schema)

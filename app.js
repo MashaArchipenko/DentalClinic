@@ -9,10 +9,11 @@ app.use('/api/link',require('./routes/link.routes'))
 app.use('/api/review',require('./routes/review.routes'))
 app.use('/api/staff',require('./routes/staff.routes'))
 //app.use('/api/workDay/',required('./routes/workDay.routes'))
-/*app.use('/api/card',require('./routes/card.routes'))
-app.use('/api/clients',require('./routes/clients.routes'))
-app.use('/api/priceList',require('./routes/priceList.routes'))*/
-
+app.use('/api/card',require('./routes/card.routes'))
+app.use('/api/client',require('./routes/client.routes'))
+app.use('/api/priceList',require('./routes/priceList.routes'))
+app.use('/api/estimate',require('./routes/estimate.routes'))
+app.use('/api/shedule',require('./routes/shedule.routes'))
 
 const PORT = config.get('port') || 5000
 

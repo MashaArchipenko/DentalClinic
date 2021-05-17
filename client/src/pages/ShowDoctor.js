@@ -37,7 +37,7 @@ export default function ShowDoctor({ revs }) {
                     </Card.Body>
                     <Card.Footer> Byrthday: {new Date(item.birthday).toLocaleDateString()}
                     </Card.Footer>
-                    <Link to="/" className="btn btn-primary stretched-link">Зписаться на прием</Link>
+                    <Link to= {`/appointment/${item._id}`} className="btn btn-primary stretched-link">Зписаться на прием</Link>
                 </Card>
             </Col>
         )

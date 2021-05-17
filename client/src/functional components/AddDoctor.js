@@ -13,6 +13,8 @@ export const AddDoctor = () => {
     const [birthday, setBirthday] = useState("")
     const [adress, setAdress] = useState("")
     const [staffName, setStaffName] = useState("Doctor")
+    const [phone, setPhone] = useState("")
+    const [pic,setPic]=useState("");
 
     const [staff, setStaff] = useState([]);
 
@@ -22,9 +24,10 @@ export const AddDoctor = () => {
     const handleSaveDoctor = async (event) => {
         event.preventDefault();
         try {
-            const data = await request('/api/staff/registerDoctor', 'POST', { email, password, name, info, birthday, adress, staffName })
+            console.log(pic);
+            const data = await request('/api/staff/registerDoctor', 'POST', { email, password, name, info, birthday, adress, staffName, phone })
             setMessage(data.message)
-            setStaff([{ "email": email, "password": password, "name": name, "info": info, "birthday": birthday, "adress": adress, "staffName": staffName }]);
+            setStaff([{ "email": email, "password": password, "name": name, "info": info, "birthday": birthday, "adress": adress, "staffName": staffName, "phone": phone }]);
         } catch (e) {
         }
     }
@@ -64,7 +67,7 @@ export const AddDoctor = () => {
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
-                        name="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                        name="email" placeholder="name@example.com" onChange={(event) => setEmail(event.target.value)} />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
     </Form.Text>
@@ -88,7 +91,12 @@ export const AddDoctor = () => {
                     <Form.Label>Info</Form.Label>
                     <Form.Control
                         as="textarea"
-                        name="info" placeholder="Enter name" onChange={(event) => setInfo(event.target.value)} />
+                        name="info" placeholder="Enter info" onChange={(event) => setInfo(event.target.value)} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control type="text" placeholder="+375*********" onChange={event => setPhone(event.target.value)} />
                 </Form.Group>
 
                 <Form.Group>
@@ -111,6 +119,12 @@ export const AddDoctor = () => {
                         <option>Admin</option>
                         <option>Manager</option>
                     </Form.Control>
+                    <Form.Group>
+                        <Form.File id="formcheck-api-regular">
+                            <Form.File.Label>Regular file input</Form.File.Label>
+                            <Form.File.Input onChange={event=>setPic(event.target.value)} />
+                        </Form.File>
+                    </Form.Group>
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={handleSaveDoctor}>
                     Save

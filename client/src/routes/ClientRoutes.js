@@ -9,6 +9,8 @@ import { Appointment } from '../functional components/Appointment'
 import { AddReview } from '../functional components/AddReview'
 import { CheckMessage } from "../functional components/CheckMessage"
 import { AddDoctor } from '../functional components/AddDoctor'
+import AddInfo from "../functional components/AddInfo"
+import WatchInfo from "../pages/WatchInfo"
 
 export const ClientRoutes = () => {
     return (
@@ -21,8 +23,12 @@ export const ClientRoutes = () => {
             <Route path="/news" component={News} exact />
             <Route path="/review" component={Reviews} exact />
             <Route path="/appointment" component={Appointment} exact />
+            <Route path="/appointment/:id" component={Appointment} exact />
             <Route path="/addReview" component={AddReview} exact />
             <Route path="/checkMessage" component={CheckMessage} exact />
+            <Route path="/info" component={AddInfo} exact /> 
+            <Route path="/watchInfo/:id" component={WatchInfo} exact />
+            
             <Redirect to="/" />
         </Switch>
     )

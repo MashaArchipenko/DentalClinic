@@ -21,6 +21,7 @@ export const ManagerRoutes = () => {
         <Route path="/doctors" component={Doctors} exact />
         <Route path="/news" component={News} exact />
         <Route path="/review" component={Reviews} exact />
+        <Route path="/appointment/:id" component={Appointment} exact />
         <Route path="/appointment" component={Appointment} exact />
         <Route path="/addReview" component={AddReview} exact />
         <Route path="/checkMessage" component={CheckMessage} exact />
