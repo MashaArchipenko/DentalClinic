@@ -44,6 +44,7 @@ export const Navbarr = props => {
                             <NavDropdown.Item href="/openOrder">Просмотр сметы</NavDropdown.Item>
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
                             <NavDropdown.Item href="/createOrder">Просмотр материалов</NavDropdown.Item>
+                            <NavDropdown.Item href="/addWorkShedule">График работы врача</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );

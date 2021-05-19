@@ -9,6 +9,7 @@ import { Appointment } from '../functional components/Appointment'
 import { AddReview } from '../functional components/AddReview'
 import { CheckMessage } from "../functional components/CheckMessage"
 import { AddDoctor } from '../functional components/AddDoctor'
+import { AddWorkShedule } from "../functional components/AddWorkShedule"
 
 
 export const ManagerRoutes = () => {
@@ -21,6 +22,7 @@ export const ManagerRoutes = () => {
         <Route path="/doctors" component={Doctors} exact />
         <Route path="/news" component={News} exact />
         <Route path="/review" component={Reviews} exact />
+        <Route path="/addWorkShedule" component={AddWorkShedule} exact />
         <Route path="/appointment/:id" component={Appointment} exact />
         <Route path="/appointment" component={Appointment} exact />
         <Route path="/addReview" component={AddReview} exact />

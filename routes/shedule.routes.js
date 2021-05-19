@@ -11,15 +11,24 @@ router.post('/', auth, async (req, res) => {
 
 
     } catch (e) {
-        response.status(500).json({ message: e.message})
+        response.status(500).json({ message: e.message })
     }
 })
 
-router.get('/all',auth,async(req,res)=>
+router.get('/forWorkDay',async(req,res)=>
 {
     try {
-        const card=await Card.find({userId:req.user.userId})
-        const shedule=await Shedule.find({idCard:card._id}).populate('idStaff')
+        const shedule = await Shedule.find({date:{$gte:Date.now()}}).populate('idStaff')
+        res.json(shedule)
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+})
+
+router.get('/all', auth, async (req, res) => {
+    try {
+        const card = await Card.find({ userId: req.user.userId })
+        const shedule = await Shedule.find({ idCard: card._id }).populate('idStaff')
         res.json(shedule);
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -35,6 +44,27 @@ router.get('/:id', auth, async (req, res) => {
     }
 })
 
+router.post('/workShedule',auth,async(req,res)=>
+{
+    try {
+        const {staffId,date,startTime,endTime} = req.body;
+        let startTime2=Date.parse(startTime);
+        let endTime2=Date.parse(endTime);
+        let i=0;
+        
+            const name = new Shedule(
+            {
+                idStaff:staffId,date,time:startTime2
+            }
+        )
+        await name.save();
+        
+        res.status(201).json({ message: 'Save',name })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 router.post('/appointment/:id', auth, async (req, res) => {
     try {
         const { date, time } = req.body;
@@ -42,12 +72,12 @@ router.post('/appointment/:id', auth, async (req, res) => {
         const card = await Card.findOne({ userId: req.user.userId })
         const shedule = new Shedule(
             {
-                cardId: card._id,date, time, idEstimate: estimate._id, idStaff: req.params.id
+                cardId: card._id, date, time, idEstimate: estimate._id, idStaff: req.params.id
             }
         )
         await shedule.save()
         await estimate.save()
-        res.status(201).json({message:'Save'})
+        res.status(201).json({ message: 'Save' })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
