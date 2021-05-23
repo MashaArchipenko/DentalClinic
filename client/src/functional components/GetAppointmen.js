@@ -28,7 +28,7 @@ export const GetAppointment = () => {
     const handleShedule = () => {
         const nowDate = Date.now();
         const listItems = shedule.map(item => {
-            console.log(item.date,nowDate)
+            console.log(item)
             //if (item.date >= nowDate) {
                 return (
                     <tr>

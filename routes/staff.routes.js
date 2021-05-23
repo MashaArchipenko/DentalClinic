@@ -48,9 +48,7 @@ router.post(
 router.get('/', async (req, res) => {
     try {
         const { staffn } = req.headers;
-        console.log(staffn);
         const staffInfo = await Staff.find({ staffName: staffn })
-        console.log("staff ", staffInfo)
         res.json(staffInfo);
     } catch (error) {
         res.status(500).json({ message: 'smth wrong try again' })

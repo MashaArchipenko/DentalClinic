@@ -7,7 +7,9 @@ import { News } from '../pages/News'
 import { Reviews } from '../pages/Reviews'
 import { Appointment } from '../functional components/Appointment'
 import { AddReview } from '../functional components/AddReview'
-import { CheckMessage } from "../functional components/CheckMessage"
+import { AddCardInfo } from "../functional components/AddCardInfo"
+import { AddEstimate } from "../functional components/AddEstimate"
+import {ActiveAppointment} from "../functional components/ActiveAppointment"
 
 export const NurseRoutes=()=>
 {
@@ -21,7 +23,9 @@ export const NurseRoutes=()=>
         <Route path="/review" component={Reviews} exact />
         <Route path="/appointment" component={Appointment} exact />
         <Route path="/addReview" component={AddReview} exact />
-        <Route path="/checkMessage" component={CheckMessage} exact />
+        <Route path="/active" component={ActiveAppointment} exact />
+        <Route path="/addCardInfo/:id" component={AddCardInfo} exact/>
+        <Route path="/addEstimate/:id" component={AddEstimate} exact />
         <Redirect to="/" />
     </Switch>
     )

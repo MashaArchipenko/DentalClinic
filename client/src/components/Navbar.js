@@ -57,15 +57,13 @@ export const Navbarr = props => {
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );
-                case 'nurse':
+                case 'ners':
                     return (
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/appointment">Запись на прием</NavDropdown.Item>
+                            <NavDropdown.Item href="/active">Записи на прием</NavDropdown.Item>
                             <NavDropdown.Item href="/showcards">Просмотр карты</NavDropdown.Item>
                             <NavDropdown.Item href="/changeCard">Заполнить карту</NavDropdown.Item>
                             <NavDropdown.Item href="/create">Заполнить смету</NavDropdown.Item>
-                            <NavDropdown.Item href="/writeMessage">Написать менеджеру</NavDropdown.Item>
-                            <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );

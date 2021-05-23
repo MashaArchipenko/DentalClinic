@@ -22,7 +22,7 @@ export const useRoutes = (isAuthenticated, userRole) => {
                 return <ClientRoutes />
             case "manager":
                 return <ManagerRoutes />
-            case "nurse":
+            case "ners":
                 return <NurseRoutes />
             case "doctor":
                 return <DoctorRoutes />

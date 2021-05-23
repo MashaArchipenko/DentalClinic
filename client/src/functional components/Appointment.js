@@ -20,6 +20,7 @@ export function Appointment() {
                 Authorization: `Bearer ${token}`
             })
             setShedule(data);
+            console.log(shedule)
         } catch (error) {
             
         }
@@ -42,9 +43,9 @@ export function Appointment() {
             </div>
         )
     }
-    if(id) return (
+    else if(id) return (
         <div>
-            {!loading && <CreateSheduleTable shedule={shedule}/>}
+            {!loading &&  <CreateSheduleTable shedule={shedule}/>}
         </div>
     )
 
