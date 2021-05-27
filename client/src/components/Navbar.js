@@ -62,8 +62,6 @@ export const Navbarr = props => {
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/active">Записи на прием</NavDropdown.Item>
                             <NavDropdown.Item href="/showcards">Просмотр карты</NavDropdown.Item>
-                            <NavDropdown.Item href="/changeCard">Заполнить карту</NavDropdown.Item>
-                            <NavDropdown.Item href="/create">Заполнить смету</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );
