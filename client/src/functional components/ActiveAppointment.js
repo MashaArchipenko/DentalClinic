@@ -26,11 +26,11 @@ export const ActiveAppointment = () => {
         return <Loader />
     }
     const handleSaveCard = event => {
-        history.push(`/addCardInfo/${event.target.value}`);
+        history.push(`/addCardInfo/${shedule[event.target.value].idCard._id}`);
     }
 
     const handleSaveEstimate = event => {
-        history.push(`/addEstimate/${event.target.value}`);
+        history.push(`/addEstimate/${shedule[event.target.value].idEstimate}`);
     }
 
     const createBody = () => {
@@ -42,7 +42,7 @@ export const ActiveAppointment = () => {
                         <td>{index}</td>
                         <td>{new Date(item.date).toLocaleDateString()}</td>
                         <td>{item.time}</td>
-                        {/*<td>{item.idStaff.name}</td>*/}
+                        <td>{item.idStaff.name}</td>
                         <td><Button value={index} onClick={handleSaveCard}>Add Card</Button>
                             <Button value={index} onClick={handleSaveEstimate}>Add Estimate</Button></td>
                     </tr>

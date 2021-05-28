@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState, useContext,useHistory } from 'react'
+import React, { useCallback, useEffect, useState, useContext } from 'react'
+import {useHistory} from 'react-router-dom'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
 import { Button, Table } from 'react-bootstrap'
@@ -38,8 +39,8 @@ export const ShowShedule = () => {
                 <td>{item.staff.name}</td>
                 <td>{item.date}</td>
                 <td>{item.time}</td>
-                <td hidden>{item.idEstimate}</td>
-                <td hidden>{item.idCard}</td>
+                <td >{item.idEstimate}</td>
+                <td >{item.idCard}</td>
                 <td><Button value = {item.idCard} onClick = {handleAddCard}>Add card info</Button>
                     <Button value = {item.idEstimate} onClick = {handleAddEstimate}>Add estimate</Button></td>
             </tr>)

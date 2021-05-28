@@ -10,6 +10,7 @@ import { AddReview } from '../functional components/AddReview'
 import { AddCardInfo } from "../functional components/AddCardInfo"
 import { AddEstimate } from "../functional components/AddEstimate"
 import {ActiveAppointment} from "../functional components/ActiveAppointment"
+import { ShowShedule } from "../functional components/ShowShedule"
 
 export const NurseRoutes=()=>
 {

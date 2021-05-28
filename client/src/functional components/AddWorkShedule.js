@@ -111,8 +111,8 @@ export const AddWorkShedule = () => {
         finishDate.setDate(finishDate.getDate() + 7)
         doctors.forEach(element => {
             let date = new Date();
-            while (date.getDate() < finishDate.getDate()) {
-                listItems.push({ doctor: element.name, date: date.toLocaleDateString(), startTime: '09:00', endTime: '18:00', staffId: element.userId })
+            while (date < finishDate) {
+                listItems.push({ doctor: element.name, date: date.toLocaleDateString(), startTime: '09:00', endTime: '18:00', staffId: element._id })
                 date.setDate(date.getDate() + 1);
             }
         });

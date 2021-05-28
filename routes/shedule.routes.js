@@ -90,7 +90,7 @@ router.get('/forWorkDay', async (req, res) => {
 //find record in this day (for nurce)
 router.get('/activeRecord', async (req, res) => {
     try {
-        const shedule = await Shedule.find({ /*date: Date.now()*/ }).populate('idStaff')
+        const shedule = await Shedule.find({ /*date: Date.now()*/ }).populate('idStaff').populate('idCard')
         res.json(shedule);
     } catch (error) {
         res.status(500).json({ message: error.message })
