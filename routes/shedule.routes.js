@@ -5,16 +5,8 @@ const config = require('config')
 const Shedule = require('../models/Shedule')
 const Estimate = require('../models/Estimate')
 const Card = require('../models/Card')
-const Staff=require('../models/Staff')
-
-router.post('/', auth, async (req, res) => {
-    try {
-
-
-    } catch (e) {
-        res.status(500).json({ message: e.message })
-    }
-})
+const Staff = require('../models/Staff')
+const Client = require('../models/Client')
 
 function parseTime(t) {
     let d = new Date();
@@ -47,6 +39,7 @@ router.post('/workShedule', auth, async (req, res) => {
     }
 })
 
+//check this route
 router.post('/appointment/:id', auth, async (req, res) => {
     try {
         const { date, time } = req.body;
@@ -67,11 +60,18 @@ router.post('/appointment/:id', auth, async (req, res) => {
 
 router.post('/appointment', auth, async (req, res) => {
     try {
-        const { idCard, date, time, idEstimate, idStaff } = req.body
-        const card = await Card.findOne({ userId: req.user.userId })
+        const { date, time,  idStaff } = req.body
+        const staff = await Staff.findOne({ _id: idStaff })
+        const client = await Client.findOne({userId: req.user.userId})
+        const card = new Card(
+            {
+                userId: client._id, date, doctorName: staff.name
+            }
+        )
         const estimate = new Estimate({ date })
         await Shedule.updateOne({ date, time, idStaff }, { $set: { idCard: card._id, idEstimate: estimate._id } })
         await estimate.save();
+        await card.save();
         res.status(201).json({ message: 'Save' })
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -90,7 +90,7 @@ router.get('/forWorkDay', async (req, res) => {
 //find record in this day (for nurce)
 router.get('/activeRecord', async (req, res) => {
     try {
-        const shedule = await Shedule.find({ /*date: Date.now()*/ }).populate('idStaff').populate('idCard')
+        const shedule = await Shedule.find({/* date: Date.now()*/ idCard: {$ne:null}}).populate('idStaff').populate('idCard')
         res.json(shedule);
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -100,8 +100,10 @@ router.get('/activeRecord', async (req, res) => {
 //find record in shedule by user id
 router.get('/all', auth, async (req, res) => {
     try {
-        const card = await Card.find({ userId: req.user.userId })
-        const shedule = await Shedule.find({ idCard: card._id }).populate('idStaff')
+        
+        const card = await Card.findOne({ userId: req.user.userId })
+        const shedule = await Shedule.find({ /*date: { $gte: Date.now() },*/ idCard: card._id }).populate('idStaff')
+       
         res.json(shedule);
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -110,10 +112,8 @@ router.get('/all', auth, async (req, res) => {
 
 router.get('/:id', auth, async (req, res) => {
     try {
-        console.log(req.params.id)
         const id = req.params.id;
-        const shedule = await Shedule.find({ idStaff:id,idCard:null })
-        console.log(shedule)
+        const shedule = await Shedule.find({ idStaff: id, idCard: null })
         res.json(shedule)
     } catch (error) {
         res.status(500).json({ message: error.message })

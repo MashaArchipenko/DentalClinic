@@ -45,6 +45,8 @@ export const Navbarr = props => {
                             <NavDropdown.Item href="/checkMessage">Просмотр сообщений</NavDropdown.Item>
                             <NavDropdown.Item href="/createOrder">Просмотр материалов</NavDropdown.Item>
                             <NavDropdown.Item href="/addWorkShedule">График работы врача</NavDropdown.Item>
+                            <NavDropdown.Item href="/addPrice">Добавить прайс лист</NavDropdown.Item>
+                            <NavDropdown.Item href="/addMaterials">Изменить материалы</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );
@@ -61,7 +63,6 @@ export const Navbarr = props => {
                     return (
                         <NavDropdown className="justify-content-end ml-auto" title="Аккаунт" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/active">Записи на прием</NavDropdown.Item>
-                            <NavDropdown.Item href="/showcards">Просмотр карты</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>
                     );

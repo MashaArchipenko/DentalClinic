@@ -1,6 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap'
-import { useParams } from 'react-router';
+import { useParams,useHistory } from 'react-router';
+import { Loader } from '../components/Loader';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook'
 
@@ -9,14 +10,15 @@ export const CreateSheduleTable = ({ shedule }) => {
     //const endDate = Date.setDate(Date.getDate + 7)
     //const startTime = new Date().setHours(9);
     //const endTime = new Date().setHours(18);
-    const { token, userId } = useContext(AuthContext)
+    const { token} = useContext(AuthContext)
+    const history=useHistory();
     const [date, setDate] = useState("")
     const { request, loading } = useHttp()
     const [time, setTime] = useState("09:00");
     const { id } = useParams();
     const [message, setMessage] = useState('');
 
-    const handleSave = async (event) => {
+    const handleSave = async event => {
         event.preventDefault();
         try {
             const data = await request(`/api/shedule/appointment/${id}`, 'POST', { date, time },
@@ -29,6 +31,18 @@ export const CreateSheduleTable = ({ shedule }) => {
         }
 
     }
+    if(loading)
+    {
+        <Loader />
+    }
+
+    useEffect(()=>
+    {
+        if(message ==='Save')
+        {
+            history.push('/getAppointment')
+        }
+    },[message])
 
     const handleAppointment = async event => {
         try {
@@ -54,7 +68,7 @@ export const CreateSheduleTable = ({ shedule }) => {
         })
         return values
     }
-    console.log("shedule ", shedule)
+
     if (!shedule || !shedule.length) {
         return (
             <Form>

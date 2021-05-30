@@ -10,6 +10,8 @@ import { AddReview } from '../functional components/AddReview'
 import { CheckMessage } from "../functional components/CheckMessage"
 import { AddDoctor } from '../functional components/AddDoctor'
 import { AddWorkShedule } from "../functional components/AddWorkShedule"
+import { AddPriceList } from "../functional components/AddPriceList"
+import { AddMaterial } from "../functional components/AddMaterial"
 
 
 export const ManagerRoutes = () => {
@@ -25,6 +27,8 @@ export const ManagerRoutes = () => {
         <Route path="/addWorkShedule" component={AddWorkShedule} exact />
         <Route path="/appointment/:id" component={Appointment} exact />
         <Route path="/appointment" component={Appointment} exact />
+        <Route path="/addPrice" component={AddPriceList} exact/>
+        <Route path="/addMaterials" component={AddMaterial} exact/>
         <Route path="/addReview" component={AddReview} exact />
         <Route path="/checkMessage" component={CheckMessage} exact />
         <Redirect to="/" />

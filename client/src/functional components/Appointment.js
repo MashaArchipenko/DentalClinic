@@ -8,46 +8,43 @@ import { CreateSheduleTable } from './CreateSheduleTable';
 
 export function Appointment() {
     const { id } = useParams();
-    const {token}=useContext(AuthContext)
-    const [shedule,setShedule]=useState(null)
+    const { token } = useContext(AuthContext)
+    const [shedule, setShedule] = useState(null)
     const { request, loading } = useHttp()
 
-    const handleGetSheduleByDoctor= useCallback(async ()=>
-    {
+    const handleGetSheduleByDoctor = useCallback(async () => {
         try {
-            const data = await request(`/api/shedule/${id}`,'GET',null,
-            {
-                Authorization: `Bearer ${token}`
-            })
+            const data = await request(`/api/shedule/${id}`, 'GET', null,
+                {
+                    Authorization: `Bearer ${token}`
+                })
             setShedule(data);
-            console.log(shedule)
         } catch (error) {
-            
-        }
-    },[token,request])
 
-    useEffect(()=>
-    {
+        }
+    }, [token, request,id])
+
+    useEffect(() => {
         handleGetSheduleByDoctor()
-    },[handleGetSheduleByDoctor])
+    }, [handleGetSheduleByDoctor])
 
     if (loading) {
         return <Loader />
     }
 
     if (!id) {
-        return(
+        return (
             <div
             ><h3>Chooose doctor</h3>
                 <Doctors />
             </div>
         )
     }
-    else if(id) return (
+    else if (id) return (
         <div>
-            {!loading &&  <CreateSheduleTable shedule={shedule}/>}
+            {!loading && <CreateSheduleTable shedule={shedule} />}
         </div>
     )
 
-    return(<div>Wait...</div>)
+    return (<div>Wait...</div>)
 }
