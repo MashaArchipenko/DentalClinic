@@ -12,6 +12,7 @@ import { AddDoctor } from '../functional components/AddDoctor'
 import { AddWorkShedule } from "../functional components/AddWorkShedule"
 import { AddPriceList } from "../functional components/AddPriceList"
 import { AddMaterial } from "../functional components/AddMaterial"
+import { Estimate } from "../functional components/Estimates"
 
 
 export const ManagerRoutes = () => {
@@ -30,6 +31,7 @@ export const ManagerRoutes = () => {
         <Route path="/addPrice" component={AddPriceList} exact/>
         <Route path="/addMaterials" component={AddMaterial} exact/>
         <Route path="/addReview" component={AddReview} exact />
+        <Route path="/estimate" component={Estimate} exact/>
         <Route path="/checkMessage" component={CheckMessage} exact />
         <Redirect to="/" />
     </Switch>

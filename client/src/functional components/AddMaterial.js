@@ -1,17 +1,15 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
-import { Form, Button, Table } from 'react-bootstrap'
+import { Form, Button, Table, Container } from 'react-bootstrap'
 
-
-export const AddMaterial = () =>
-{
+export const AddMaterial = () => {
     const { request, loading } = useHttp()
-    const [material, setMaterial] = useEffect([{
+    const [material, setMaterial] = useState([{
         name: '',
         count: ''
     }])
-    const [newMaterial, setNewMaterial] = useEffect({
+    const [newMaterial, setNewMaterial] = useState({
         name: '',
         count: ''
     })
@@ -69,12 +67,12 @@ export const AddMaterial = () =>
     const handleSave = event => {
         event.preventDefault();
         try {
-            const data = require('/api/material/newMaterial', 'POST', null);
-            if (data.message === 'Save') window.location.reload();
+            console.log(newMaterial);
+            const data = request('/api/material/newMaterial', 'POST', { ...newMaterial });
+            if (data) window.location.reload();
         } catch (error) {
 
         }
-
     }
 
     const renderForm = () => {
@@ -94,8 +92,8 @@ export const AddMaterial = () =>
     }
 
     return (
-        <div>{!loading && renderMaterial()}
-             {renderForm()}
-        </div>
+        <Container>{!loading && renderMaterial()}
+            {renderForm()}
+        </Container>
     )
 }

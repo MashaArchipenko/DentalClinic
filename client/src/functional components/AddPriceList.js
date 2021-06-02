@@ -1,18 +1,18 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect,useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader';
 import { AuthContext } from '../context/AuthContext'
-import { Form, Button, Table } from 'react-bootstrap'
+import { Form, Button, Table, Container } from 'react-bootstrap'
 
 export const AddPriceList = () => {
     const { userRole } = useContext(AuthContext)
     const { request, loading } = useHttp()
-    const [price, setPrice] = useEffect([{
-        nameService: '',
+    const [price, setPrice] = useState([{
+        nameServise: '',
         coust: ''
     }])
-    const [newPrice, setNewPrice] = useEffect({
-        nameService: '',
+    const [newPrice, setNewPrice] = useState({
+        nameServise: '',
         coust: ''
     })
     const handleGetPrice = useCallback(async () => {
@@ -40,7 +40,7 @@ export const AddPriceList = () => {
             return (
                 <tr>
                     <td>{index}</td>
-                    <td>{item.nameService}</td>
+                    <td>{item.nameServise}</td>
                     <td>{item.coust}</td>
                 </tr>
             )
@@ -68,8 +68,9 @@ export const AddPriceList = () => {
     const handleSave = event => {
         event.preventDefault();
         try {
-            const data = require('/api/priceList/', 'POST', null);
-            if (data.message === 'Save') window.location.reload();
+            console.log(newPrice)
+            const data = request('/api/priceList/', 'POST', {...newPrice});
+            if (data) window.location.reload();
         } catch (error) {
 
         }
@@ -80,7 +81,7 @@ export const AddPriceList = () => {
             <Form onSubmit={handleSave}>
                 <Form.Group>
                     <Form.Label>Название</Form.Label>
-                    <Form.Control type="text" name="nameService" value={newPrice.nameService} onChange={handleChangeForm} />
+                    <Form.Control type="text" name="nameServise" value={newPrice.nameServise} onChange={handleChangeForm} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Стоимость</Form.Label>
@@ -92,8 +93,8 @@ export const AddPriceList = () => {
     }
 
     return (
-        <div>{!loading && renderPrice()}
+        <Container>{!loading && renderPrice()}
             {userRole === 'manager' && renderForm()}
-        </div>
+        </Container>
     )
 }

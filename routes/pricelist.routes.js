@@ -4,11 +4,12 @@ const Price=require('../models/PriceList')
 
 router.post('/', async (req, res) => {
     try {
-        const {nameService, coust} = req.body
-        const price= new Price
+        const {nameServise, coust} = req.body
+        const price = new Price(
         {
-            nameService, coust
+            nameServise, coust
         }
+        )
         await price.save()
         res.status(201).json({message:'Save'})
     } catch (e) {
