@@ -4,9 +4,9 @@
     margin-top: 5%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-gap: 1rem;
-    
+    margin-bottom: 5%;
 }
 
 .gridItem
@@ -15,6 +15,7 @@
     color: white;
     width: 250px;
     height: 250px;
+    text-align: center;
     align-items: center;
 }
 

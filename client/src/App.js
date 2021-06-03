@@ -4,6 +4,7 @@ import { Navbarr } from './components/Navbar';
 import { AuthContext } from './context/AuthContext';
 import { useAuth } from './hooks/auth.hook';
 import { useRoutes } from './routes/routes';
+import Footer from './components/Footer'
 
 function App() {
   const { token, login, logout, userId, userRole,ready } = useAuth()
@@ -22,6 +23,7 @@ function App() {
         <div>
           {routes}
           </div>
+          <Footer/>
           </Router>
     </AuthContext.Provider>
     

@@ -1,0 +1,12 @@
+.col
+{
+    padding: 5% 1%;
+    text-align: justify;
+    background-color: rgba(128, 128, 128, 0.336);
+}
+
+.image
+{
+    width: inherit;
+    height: inherit;
+}

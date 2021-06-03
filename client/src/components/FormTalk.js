@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Col, Container, Form, Row, Button } from 'react-bootstrap'
 import s from './styles/formTalk.module.css'
+import img from './img/ask.jpg'
 
 export default function FormTalk() {
     return (
@@ -8,21 +9,21 @@ export default function FormTalk() {
             <Row>
                 <Col>
                 <Form className={s.form}>
-                    <h3>Ask manager</h3>
+                    <h3>Спросите менеджера</h3>
                     <Form.Group>
-                        <Form.Label>Enter Email or phone number</Form.Label>
-                        <Form.Control type="text" placeholder="Enter e-mail or phone number"/>
+                        <Form.Label>Введите Email или номер телефона</Form.Label>
+                        <Form.Control type="text" placeholder="user@mail.ru +375(**)***-**-**"/>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Enter u ask</Form.Label>
-                        <Form.Control as="textarea" className={s.textArea}  type="text" placeholder="Enter ask"/>
+                        <Form.Label>Введите вопрос</Form.Label>
+                        <Form.Control as="textarea" className={s.textArea}  type="text" placeholder="Вопрос"/>
                     </Form.Group>
-                    <Button className={s.button} type="submit">Ok</Button>
+                    <Button className={s.button} type="submit">Отправить</Button>
                 </Form>
                 </Col>
                 <Col>
                 <Card className={s.card}>
-                    <Card.Img />
+                    <Card.Img src={img}/>
                     <Card.Body>
                         <Card.Title>Ask Manager</Card.Title>
                         <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
