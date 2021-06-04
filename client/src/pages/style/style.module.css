@@ -1,0 +1,19 @@
+.table
+{
+    background-color: rgba(172, 170, 170, 0.418);
+    font-size: large;
+    border-spacing: 0 !important;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.head
+{
+    background-color: rgb(128, 128, 128);
+}
+
+.header
+{
+    text-align: center;
+    font-size: xx-large;
+}

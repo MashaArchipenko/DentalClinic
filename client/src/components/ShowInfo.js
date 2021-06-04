@@ -8,12 +8,13 @@ export const ShowInfo=({info})=>
                 <td>{item.name}</td>
                 <td>{item.adress}</td>
                 <td>{item.phone}</td>
-                <td>{new Date(item.byrthday).toLocaleDateString()}</td>
+                <td>{new Date(item.byrthday).toDateString()}</td>
             </tr>
         )
     })
 
-    return <Container><Table>
+    return <Container>
+        <Table>
         <thead>
             <tr>
                 <th>Фио</th>

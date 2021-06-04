@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Container, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import s from "./Style/style.module.css"
 
 export const ActiveAppointment = () => {
     const [shedule, setShedule] = useState(null)
@@ -50,21 +51,25 @@ export const ActiveAppointment = () => {
             })
             return values
         }
-        else return (<tr><td>Have't records</td></tr>)
+        else return (<tr><td>На сегодня активных записей нет</td></tr>)
 
     }
     return (
-        <Table>
+        <Container>
+            <div className={s.header}>Активные записи</div>
+<hr style={{border:'2px solid black',borderRadius:"2px"}}/>
+        <Table className={s.table}>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Name</th>
-                    <th>Action</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Имя Врача</th>
+                    <th>Действие</th>
                 </tr>
             </thead>
             <tbody>{!loading && createBody()}</tbody>
         </Table>
+        </Container>
     )
 }

@@ -3,6 +3,7 @@ import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader';
 import { Form, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
+import s from './Style/style.module.css'
 
 export const AddCardInfo = () => {
     const { id } = useParams();
@@ -45,8 +46,9 @@ export const AddCardInfo = () => {
     }
 
     return (
-        <Form onSubmit={handleSaveChanges}>
-            <Form.Group>
+        <Form className={s.form} onSubmit={handleSaveChanges}>
+             <h2>Заполните карту</h2>
+            <Form.Group style={{marginTop:'5%'}}>
                 <Form.Label>Дата</Form.Label>
                 <Form.Control type="text" value={cardInfo.date} />
             </Form.Group>

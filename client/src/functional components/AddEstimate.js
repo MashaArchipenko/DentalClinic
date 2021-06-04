@@ -3,6 +3,7 @@ import { Container, Table, Button } from 'react-bootstrap'
 import { useCallback, useEffect, useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader'
+import s from './Style/style.module.css'
 
 export function AddEstimate() {
     const { id } = useParams();
@@ -13,9 +14,9 @@ export function AddEstimate() {
     }])
     const [materialList, setMaterialList] = useState([]);
     const [priceList, setPriceList] = useState([])
-    const [checkedMaterial,setCheckedMaterial]=useState([]);
-    const [checkedPrice,setCheckedPrice]=useState([]);
-    const [message,setMessage]=useState('');
+    const [checkedMaterial, setCheckedMaterial] = useState([]);
+    const [checkedPrice, setCheckedPrice] = useState([]);
+    const [message, setMessage] = useState('');
 
     const [price, setPrice] = useState([{
         nameServise: '',
@@ -26,9 +27,8 @@ export function AddEstimate() {
         try {
             const data = await request(`/api/material/all`, 'GET', null)
             setMaterial(data)
-            let array=[]
-            for(let i=0;i<data.length;i++)
-            {
+            let array = []
+            for (let i = 0; i < data.length; i++) {
                 array.push(false);
             }
             setCheckedMaterial(array)
@@ -41,9 +41,8 @@ export function AddEstimate() {
         try {
             const data = await request(`/api/priceList/all`, 'GET', null)
             setPrice(data)
-            let array=[]
-            for(let i=0;i<data.length;i++)
-            {
+            let array = []
+            for (let i = 0; i < data.length; i++) {
                 array.push(false);
             }
             setCheckedPrice(array)
@@ -63,7 +62,7 @@ export function AddEstimate() {
 
     const handleCheckedMaterial = (event) => {
         let items = checkedMaterial;
-        items[event.target.id]=!items[event.target.id]
+        items[event.target.id] = !items[event.target.id]
         setCheckedMaterial(items);
 
         if (checkedMaterial[event.target.id]) materialList.push(material[parseInt(event.target.name)])
@@ -76,7 +75,7 @@ export function AddEstimate() {
 
     const handleCheckedPrice = (event) => {
         let items = checkedPrice;
-        items[event.target.id]=!items[event.target.id]
+        items[event.target.id] = !items[event.target.id]
         setCheckedPrice(items);
 
         if (checkedPrice[event.target.id]) priceList.push(price[parseInt(event.target.name)])
@@ -103,7 +102,7 @@ export function AddEstimate() {
             )
         })
         return (
-            <Table>
+            <Table className={s.table}>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -135,13 +134,13 @@ export function AddEstimate() {
             )
         })
         return (
-            <Table>
+            <Table className={s.table}>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>check</th>
-                        <th>name</th>
-                        <th>coust</th>
+                        <th>Выбрать</th>
+                        <th>Наименование</th>
+                        <th>Стоимость</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,27 +150,28 @@ export function AddEstimate() {
         )
     }
 
-    const handleSave=()=>
-    {
+    const handleSave = () => {
         try {
-            const dataMaterial = request('/api/material/change/','POST',{...materialList});
-            const dataEstimate = request(`/api/estimate/${id}`,'POST',{...priceList.concat(materialList)})
-            if(dataMaterial && dataEstimate) setMessage('Save');
+            const dataMaterial = request('/api/material/change/', 'POST', { ...materialList });
+            const dataEstimate = request(`/api/estimate/${id}`, 'POST', { ...priceList.concat(materialList) })
+            if (dataMaterial && dataEstimate) setMessage('Save');
         } catch (error) {
-            
+
         }
     }
-    if(message)
-    {
+    if (message) {
         return <p>Estimate Save</p>
     }
 
     return (
         <Container>
+            <div className={s.header}>Процедуры</div>
+            <hr style={{ border: '2px solid black', borderRadius: "2px" }} />
             {!loading && renderPrice()}
-            <p>Материалы</p>
+            <div className={s.header}>Материалы</div>
+            <hr style={{ border: '2px solid black', borderRadius: "2px" }} />
             {!loading && renderMaterial()}
-            <Button onClick={handleSave}>Sent</Button>
+            <Button className={s.button} onClick={handleSave}>Сохранить</Button>
         </Container>
     )
 }

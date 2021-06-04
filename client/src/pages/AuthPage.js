@@ -33,42 +33,38 @@ export const AuthPage = () => {
         }
     }
 
-    useEffect(() => {
-        setMessage(error)
-        clearError()
-    }, [error, message, clearError])
-
-    useEffect(() => {
-        errorMessage();
-    }, [message])
-
     const errorMessage = () => {
         return (
             <Toast>
                 <Toast.Header>
-                    <strong className="mr-auto">Error</strong>
+                    <strong className="mr-auto">Ошибка</strong>
                 </Toast.Header>
                 <Toast.Body>{message}</Toast.Body>
             </Toast>
         )
+    
     }
+    useEffect(() => {
+        setMessage(error)
+        clearError()
+    }, [error,clearError])
 
     return (
         <Form className={s.form}>
             {authPage && <h2>Вход</h2>}
             {!authPage && <h2>Регистрация</h2>}
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                     type="email"
-                    name="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                    name="email" placeholder="user@example.ru" onChange={(event) => setEmail(event.target.value)} />
                 <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    Ваша почта никогда не разглашается
     </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Пароль</Form.Label>
                 <Form.Control
                     type="password"
                     name="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />

@@ -3,6 +3,7 @@ import { useHttp } from '../hooks/http.hook'
 import { Loader } from '../components/Loader';
 import { AuthContext } from '../context/AuthContext'
 import { Form, Button, Table, Container } from 'react-bootstrap'
+import s from './Style/style.module.css'
 
 export const AddPriceList = () => {
     const { userRole } = useContext(AuthContext)
@@ -78,7 +79,7 @@ export const AddPriceList = () => {
     }
     const renderForm = () => {
         return (
-            <Form onSubmit={handleSave}>
+            <Form className={s.form} onSubmit={handleSave}>
                 <Form.Group>
                     <Form.Label>Название</Form.Label>
                     <Form.Control type="text" name="nameServise" value={newPrice.nameServise} onChange={handleChangeForm} />

@@ -4,6 +4,7 @@ import { Loader } from '../components/Loader'
 import { AuthContext } from '../context/AuthContext'
 import { useHttp } from '../hooks/http.hook'
 import { useHistory } from 'react-router-dom'
+import s from './Style/style.module.css'
 
 function AddInfo() {
     const { token,userId } = useContext(AuthContext)
@@ -45,8 +46,9 @@ function AddInfo() {
 
 
     return (
-        <Form>
-            <Form.Group>
+        <Form className={s.form}>
+            <h2>Добавление информации</h2>
+            <Form.Group style={{marginTop:'5%'}}>
                 <Form.Label>Введите ФИО</Form.Label>
                 <Form.Control
                     type="text"

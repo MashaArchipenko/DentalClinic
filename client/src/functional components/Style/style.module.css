@@ -1,0 +1,30 @@
+.form
+{
+    border: 1px solid black;
+    width: 50%;
+    margin: 4% 23%;
+    padding: 3% 8%;
+}
+
+.header
+{
+    text-align: center;
+    font-size: xx-large;
+}
+
+.table
+{
+    background-color: rgba(172, 170, 170, 0.418);
+    font-size: large;
+    border-spacing: 0 !important;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.button
+{
+    margin-bottom: 5%;
+    padding: 7px 20px;
+    margin-left: 89%;
+    margin-right: 0;
+}
